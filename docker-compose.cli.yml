@@ -1,0 +1,17 @@
+version: '3.5'
+
+services:
+  php-cli:
+    image: salleurl/php-cli:8.0.3
+    volumes:
+      - type: bind
+        source: ${PWD}
+        target: /app
+#      - type: bind
+#        source: ~/.gitconfig
+#        target: /home/lasalle/.gitconfig.org
+#      - type: bind
+#        source: ~/.ssh/id_rsa
+#        target: /home/lasalle/.ssh/id_rsa
+    env_file:
+      - ${PWD}/docker.env

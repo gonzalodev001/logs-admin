@@ -1,0 +1,12 @@
+version: '3.5'
+
+services:
+  mercure:
+    image: dunglas/mercure
+    ports:
+      - 3000:80
+    env_file:
+      - ${PWD}/docker.env
+
+volumes:
+  mysql_data:
