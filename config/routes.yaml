@@ -3,4 +3,4 @@
 #    controller: App\Controller\DefaultController::index
 hello: 
     path: /hello
-    controller: App\Controller\HelloController::hello
+    controller: LaSalle\GroupSeven\Controller\HelloController::hello

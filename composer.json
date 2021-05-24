@@ -23,12 +23,12 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "LaSalle\\GroupSeven\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Tests\\": "tests/"
+            "LaSalleTests\\GroupSeven\\": "tests/"
         }
     },
     "replace": {

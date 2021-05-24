@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace LaSalle\GroupSeven\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 
