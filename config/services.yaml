@@ -33,7 +33,7 @@ services:
     monolog.formatter.uuid:
         class: Monolog\Formatter\JsonFormatter
 
-    LaSalle\GroupSeven\Logger\UuidProcessor:
+    LaSalle\GroupSeven\Core\Domain\Logger\UuidProcessor:
         tags:
             - { name: monolog.processor }
 

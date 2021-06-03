@@ -1,6 +1,6 @@
 <?php
 
-namespace LaSalle\GroupSeven\Logger;
+namespace LaSalle\GroupSeven\Core\Domain\Logger;
 
 // use Monolog\Processor\ProcessorInterface;
 use Symfony\Component\Uid\Uuid;

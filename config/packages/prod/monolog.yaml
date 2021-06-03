@@ -15,3 +15,9 @@ monolog:
             type: console
             process_psr_3_messages: false
             channels: ["!event", "!doctrine"]
+        master:
+            type: rotating_file
+            path: '%kernel.logs_dir%/%kernel.environment%.log'
+            level: debug
+            max_files: 15
+            formatter: monolog.formatter.uuid

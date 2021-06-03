@@ -9,12 +9,14 @@
         "ext-iconv": "*",
         "symfony/console": "5.2.*",
         "symfony/dotenv": "5.2.*",
+        "symfony/finder": "5.2.*",
         "symfony/flex": "^1.13",
         "symfony/framework-bundle": "5.2.*",
         "symfony/http-client": "5.2.*",
         "symfony/monolog-bundle": "^3.7",
         "symfony/twig-bundle": "5.2.*",
         "symfony/uid": "5.2.*",
+        "symfony/var-dumper": "5.2.*",
         "symfony/yaml": "5.2.*"
     },
     "config": {
