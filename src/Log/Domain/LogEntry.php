@@ -8,6 +8,11 @@ final class LogEntry
     {
     }
 
+    public function environment(): string
+    {
+        return $this->environment;
+    }
+
     public function level(): string
     {
         return $this->level;

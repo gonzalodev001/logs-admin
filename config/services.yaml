@@ -33,10 +33,34 @@ services:
     monolog.formatter.uuid:
         class: Monolog\Formatter\JsonFormatter
 
-    LaSalle\GroupSeven\Core\Domain\Logger\UuidProcessor:
-        tags:
-            - { name: monolog.processor }
-
     Symfony\Bridge\Monolog\Handler\ElasticsearchLogstashHandler:
         arguments:
             $endpoint: '%env(MONOLOG_ELASTICSEARCH_ENDPOINT)%'
+
+    #LaSalle\GroupSeven\Log\Infrastructure\Framework\Command\LogEntriesCommand: //4.4
+        #tags: //4.3
+            #- { name: 'console.command', command: 'app:log-entries' } // 4.3
+        #arguments: //4.4
+            #$getLogEntriesByEnvironmentUseCase: '@LaSalle\GroupSeven\Log\Application\GetLogEntriesByEnvironmentUseCase' //4.4
+
+    #LaSalle\GroupSeven\LogSummary\Infrastructure\Framework\Command\LogSummariesCommand: //4.4
+        #tags: //4.3
+            #- { name: 'console.command', command: 'app:log:summaries' } //4.3
+        #arguments: //4.4
+            #$getLogSummariesByEnvironmentAndLevelsUseCase: '@LaSalle\GroupSeven\LogSummary\Application\GetLogSummariesByEnvironmentAndLevelsUseCase' //4.4
+
+    #LaSalle\GroupSeven\LogSummary\Application\GetLogSummariesByEnvironmentAndLevelsUseCase: //4.4
+        #arguments: //4.4
+            #$repository: '@LaSalle\GroupSeven\LogSummary\Infrastructure\Persistence\InMemoryLogSummaryRepository' //4.4
+
+    #LaSalle\GroupSeven\Log\Application\GetLogEntriesByEnvironmentUseCase: //4.4
+        #arguments: //4.4
+            #$repository: '@LaSalle\GroupSeven\Log\Infrastructure\Persistence\FilesystemLogRepository' //4.4
+
+    #LaSalle\GroupSeven\LogSummary\Infrastructure\Persistence\InMemoryLogSummaryRepository: //4.4
+        #arguments: //4.4
+            #$getLogEntriesByEnvironmentUseCase: '@LaSalle\GroupSeven\Log\Application\GetLogEntriesByEnvironmentUseCase' //4.4
+
+    #LaSalle\GroupSeven\Log\Infrastructure\Persistence\FilesystemLogRepository: //4.4
+        #arguments: //4.4
+            #$parameterBag: '@Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface' //4.4

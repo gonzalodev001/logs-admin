@@ -8,4 +8,14 @@ El cliente mada un request HTTP por medio de una URL, el componente routing se e
 
 ## Pregunta 2.3
 
-El controlador (handler) tipo "fingers_crossed" almacena todos los mensajes durante una solicitud (request) y pasa a un segundo controlador (handler) si el mensaje alcanza un nivel superior o igual al indicado en el "action_level"
+El controlador (handler) tipo "fingers_crossed" almacena todos los mensajes durante una solicitud (request) y pasa a un segundo controlador (handler) si el mensaje alcanza un nivel superior o igual al indicado en el "action_level".
+
+# Practice 4
+
+## Pregunta 4.3
+
+Si. Podemos eliminar los dos comandos que hemos creado ya que se etiquetan automáticamente los servicios en base la clase "Command".
+
+## Pregunta 4.4
+
+Si. Podemos eliminar los servicios que declaren inyecciones de dependencias siempre y cuando solo haya una única implementación.

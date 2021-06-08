@@ -2,10 +2,10 @@
 
 namespace LaSalle\GroupSeven\Core\Domain\Logger;
 
-// use Monolog\Processor\ProcessorInterface;
+use Monolog\Processor\ProcessorInterface;
 use Symfony\Component\Uid\Uuid;
 
-class UuidProcessor // implements ProcessorInterface
+class UuidProcessor implements ProcessorInterface
 {
     public function __invoke(array $record): array
     {

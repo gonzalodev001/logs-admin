@@ -1,8 +1,8 @@
 <?php
 
-namespace LaSalle\GroupSeven\Log\Infrastructure\Framework\Commands;
+namespace LaSalle\GroupSeven\LogSummary\Infrastructure\Framework\Command;
 
-use LaSalle\GroupSeven\Log\Application\GetLogEntriesByEnvironmentUseCase;
+use LaSalle\GroupSeven\LogSummary\Application\GetLogSummariesByEnvironmentAndLevelsUseCase;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
@@ -14,7 +14,7 @@ final class LogSummariesCommand extends Command
 {
     protected static $defaultName = 'app:log:summaries';
 
-    public function __construct(private GetLogEntriesByEnvironmentUseCase $getLogEntriesByEnvironmentUseCase)
+    public function __construct(private GetLogSummariesByEnvironmentAndLevelsUseCase $getLogSummariesByEnvironmentAndLevelsUseCase)
     {
         parent::__construct();
     }
@@ -36,24 +36,14 @@ final class LogSummariesCommand extends Command
             '0,1,2,3,4,5,6,7'
         );
         $question->setMultiselect(true);
-        $levelArray = $helper->ask($input, $output, $question);
+        $levels = $helper->ask($input, $output, $question);
 
-        $logEntriesByEnvironment = $this->getLogEntriesByEnvironmentUseCase->__invoke($logEnv, $levelArray);
-
-        $logSummaries = [];
-        foreach ($logEntriesByEnvironment as $logEntry) {
-            $logEntryLevel = strtolower($logEntry->level());
-            if (!array_key_exists($logEntryLevel, $logSummaries)) {
-                $logSummaries[$logEntryLevel] = 1;
-            } else {
-                $logSummaries[$logEntryLevel] = ++$logSummaries[$logEntryLevel];
-            }
-        }
+        $arrayLogSummaries = $this->getLogSummariesByEnvironmentAndLevelsUseCase->__invoke($logEnv, $levels);
 
         $table = new Table($output);
-        $table->setHeaders(['Level', 'Count']);
-        foreach ($logSummaries as $key => $value) {
-            $table->addRows([[$key, $value]]);
+        $table->setHeaders(['Id', 'environment', 'Level', 'Count']);
+        foreach ($arrayLogSummaries as $logSummary) {
+            $table->addRow([$logSummary->id(), $logSummary->environment(), $logSummary->level(), $logSummary->count()]);
         }
         $table->render();
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace LaSalle\GroupSeven\Log\Infrastructure\Framework\Commands;
+namespace LaSalle\GroupSeven\Log\Infrastructure\Framework\Command;
 
 use LaSalle\GroupSeven\Log\Application\GetLogEntriesByEnvironmentUseCase;
 use Symfony\Component\Console\Command\Command;
