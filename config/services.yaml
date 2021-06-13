@@ -30,7 +30,7 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    monolog.formatter.uuid:
+    monolog.formatter.custom:
         class: Monolog\Formatter\JsonFormatter
 
     Symfony\Bridge\Monolog\Handler\ElasticsearchLogstashHandler:
@@ -64,3 +64,21 @@ services:
     #LaSalle\GroupSeven\Log\Infrastructure\Persistence\FilesystemLogRepository: //4.4
         #arguments: //4.4
             #$parameterBag: '@Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface' //4.4
+
+    #LaSalle\GroupSeven\LogSummary\Application\AddLogEntryToLogSummaryWhenLogEntryCreated:
+        #tags: ['kernel.event_listener']
+        #arguments:
+            #$repository: '@LaSalle\GroupSeven\LogSummary\Infrastructure\Persistence\CachePoolLogSummaryRepository'
+
+    LaSalle\GroupSeven\LogSummary\Application\GetLogSummariesByEnvironmentAndLevelsUseCase:
+        arguments:
+            $repository: '@LaSalle\GroupSeven\LogSummary\Infrastructure\Persistence\CachePoolLogSummaryRepository'
+
+    LaSalle\GroupSeven\LogSummary\Application\AddLogEntryToLogSummaryWhenLogEntryCreated:
+        tags: ['messenger.message_handler']
+        arguments:
+            $repository: '@LaSalle\GroupSeven\LogSummary\Infrastructure\Persistence\CachePoolLogSummaryRepository'
+
+    LaSalle\GroupSeven\Log\Application\CreateLogEntryUseCase:
+        arguments:
+            $domainEventBus: '@LaSalle\GroupSeven\Core\Infrastructure\Framework\Event\SymfonyMessengerDomainEventBus'

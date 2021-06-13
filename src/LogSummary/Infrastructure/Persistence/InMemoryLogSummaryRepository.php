@@ -4,7 +4,7 @@ namespace LaSalle\GroupSeven\LogSummary\Infrastructure\Persistence;
 
 use LaSalle\GroupSeven\Log\Application\GetLogEntriesByEnvironmentUseCase;
 use LaSalle\GroupSeven\LogSummary\Domain\LogSummary;
-use LaSalle\GroupSeven\LogSummary\Domain\LogSummaryRepository;
+use LaSalle\GroupSeven\LogSummary\Domain\Repository\LogSummaryRepository;
 use Symfony\Component\Uid\Uuid;
 
 final class InMemoryLogSummaryRepository implements LogSummaryRepository
@@ -15,7 +15,7 @@ final class InMemoryLogSummaryRepository implements LogSummaryRepository
     {
     }
 
-    public function all(string $environment, array $levels): array
+    public function findByEnvironmentAndLevels(string $environment, array $levels): array
     {
         $this->logSummaries = [];
         $filteredArrayLogEntries = $this->getLogEntriesByEnvironmentUseCase->__invoke($environment, $levels);
@@ -34,5 +34,9 @@ final class InMemoryLogSummaryRepository implements LogSummaryRepository
             }
         }
         return $this->logSummaries;
+    }
+
+    public function save(LogSummary $logSummary): void
+    {
     }
 }

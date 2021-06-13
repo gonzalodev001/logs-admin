@@ -2,7 +2,7 @@
 
 namespace LaSalle\GroupSeven\LogSummary\Application;
 
-use LaSalle\GroupSeven\LogSummary\Domain\LogSummaryRepository;
+use LaSalle\GroupSeven\LogSummary\Domain\Repository\LogSummaryRepository;
 
 class GetLogSummariesByEnvironmentAndLevelsUseCase
 {
@@ -12,6 +12,6 @@ class GetLogSummariesByEnvironmentAndLevelsUseCase
 
     public function __invoke(string $environment, array $levelArray): array
     {
-        return $this->repository->all($environment, $levelArray);
+        return $this->repository->findByEnvironmentAndLevels($environment, $levelArray);
     }
 }

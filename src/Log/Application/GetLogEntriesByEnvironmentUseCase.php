@@ -3,7 +3,7 @@
 namespace LaSalle\GroupSeven\Log\Application;
 
 use LaSalle\GroupSeven\Log\Domain\LogEntry;
-use LaSalle\GroupSeven\Log\Domain\LogRepository;
+use LaSalle\GroupSeven\Log\Domain\Repository\LogRepository;
 
 final class GetLogEntriesByEnvironmentUseCase
 {

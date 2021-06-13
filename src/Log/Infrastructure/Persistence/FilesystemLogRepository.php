@@ -3,7 +3,7 @@
 namespace LaSalle\GroupSeven\Log\Infrastructure\Persistence;
 
 use LaSalle\GroupSeven\Log\Domain\LogEntry;
-use LaSalle\GroupSeven\Log\Domain\LogRepository;
+use LaSalle\GroupSeven\Log\Domain\Repository\LogRepository;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Finder\Finder;
 
@@ -13,10 +13,6 @@ final class FilesystemLogRepository implements LogRepository
     {
     }
 
-    /**
-     * @param string $environment
-     * @return LogEntry[]
-     */
     public function findLogEntriesByEnvironment(string $environment): array
     {
         $finder = new Finder();
@@ -40,5 +36,9 @@ final class FilesystemLogRepository implements LogRepository
             return $contentArrayLogEntries;
         }
         return [];
+    }
+
+    public function save(LogEntry $logEntry): void
+    {
     }
 }

@@ -4,7 +4,7 @@ monolog:
             type: stream
             path: php://stderr
             level: debug
-            formatter: monolog.formatter.uuid
+            formatter: monolog.formatter.custom
             channels: ["!event"]
         # uncomment to get logging in your browser
         # you may have to allow bigger header sizes in your Web server configuration
@@ -29,4 +29,9 @@ monolog:
             path: '%kernel.logs_dir%/%kernel.environment%.log'
             level: debug
             max_files: 15
-            formatter: monolog.formatter.uuid
+            formatter: monolog.formatter.custom
+
+        create_log_entry_handler:
+            type: service
+            id: 'LaSalle\GroupSeven\Log\Infrastructure\Monolog\CreateLogEntryHandler'
+            channels: ["!event", "!messenger", "!logging"]
