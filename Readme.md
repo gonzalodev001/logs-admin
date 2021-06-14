@@ -19,3 +19,9 @@ Si. Podemos eliminar los dos comandos que hemos creado ya que se etiquetan autom
 ## Pregunta 4.4
 
 Si. Podemos eliminar los servicios que declaren inyecciones de dependencias siempre y cuando solo haya una única implementación.
+
+# Practice 6
+
+## Pregunta 6.1 6.2 6.3
+
+Se no olvido taguear, lo pusheamos todo junto.
