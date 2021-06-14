@@ -28,7 +28,6 @@ class ResgisterLogEntryController
                 $request->request->getAlpha('message'),
                 $request->request->getAlpha('occurredOn')
             );
-            dump($request->request->get('id'));
             return new JsonResponse('Ok', Response::HTTP_OK);
         } catch (\Exception $e) {
             return new JsonResponse($e->getMessage(), Response::HTTP_BAD_REQUEST);
