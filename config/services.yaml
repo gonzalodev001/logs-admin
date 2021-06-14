@@ -82,3 +82,7 @@ services:
     LaSalle\GroupSeven\Log\Application\CreateLogEntryUseCase:
         arguments:
             $domainEventBus: '@LaSalle\GroupSeven\Core\Infrastructure\Framework\Event\SymfonyMessengerDomainEventBus'
+
+    LaSalle\GroupSeven\Controller\Api\GetLogSummariesController:
+        arguments:
+            $getLogSummariesByEnvironmentAndLevelsUseCase: '@LaSalle\GroupSeven\LogSummary\Application\GetLogSummariesByEnvironmentAndLevelsUseCase'

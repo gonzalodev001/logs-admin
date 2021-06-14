@@ -32,4 +32,37 @@ final class LogSummary
     {
         $this->count = ++$this->count;
     }
+
+    /**
+     * @return string
+     */
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEnvironment(): string
+    {
+        return $this->environment;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLevel(): string
+    {
+        return $this->level;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCount(): int
+    {
+        return $this->count;
+    }
+
 }
