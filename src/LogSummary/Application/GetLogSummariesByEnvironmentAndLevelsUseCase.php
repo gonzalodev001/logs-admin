@@ -10,8 +10,14 @@ class GetLogSummariesByEnvironmentAndLevelsUseCase
     {
     }
 
-    public function __invoke(string $environment, array $levelArray): array
+    public function __invoke(string $environment = null, array $levelArray = null): array
     {
+        if (is_null($environment)) {
+            $environment = 'dev';
+        }
+        if (is_null($levelArray)) {
+            $levelArray = ['emergency', 'alert', 'critical', 'error', 'warning', 'notice', 'info', 'debug'];
+        }
         return $this->repository->findByEnvironmentAndLevels($environment, $levelArray);
     }
 }
