@@ -21,7 +21,6 @@ class AddLogEntryToLogSummaryWhenLogEntryCreated
     {
         $levelArray[] = strtolower($event->logEntry()->level()->level());
         $logSummaries = $this->repository->findByEnvironmentAndLevels($event->logEntry()->environment(), $levelArray);
-        dump($logSummaries);
         $level = $event->logEntry()->level();
         $logCount = new LogCount(0);
         if (empty($logSummaries[0])) {
