@@ -2,9 +2,12 @@
 
 namespace LaSalle\GroupSeven\LogSummary\Domain;
 
+use LaSalle\GroupSeven\Core\Domain\ValueObject\LogLevel;
+use LaSalle\GroupSeven\LogSummary\Domain\ValueObject\LogCount;
+
 final class LogSummary
 {
-    public function __construct(private string $id, private string $environment, private string $level, private int $count)
+    public function __construct(private string $id, private string $environment, private LogLevel $level, private LogCount $count)
     {
     }
 
@@ -18,20 +21,16 @@ final class LogSummary
         return $this->environment;
     }
 
-    public function level(): string
+    public function level(): LogLevel
     {
         return $this->level;
     }
 
-    public function count(): int
+    public function count(): LogCount
     {
         return $this->count;
     }
 
-    public function addCount(): void
-    {
-        $this->count = ++$this->count;
-    }
 
     /**
      * @return string
@@ -50,17 +49,17 @@ final class LogSummary
     }
 
     /**
-     * @return string
+     * @return LogLevel
      */
-    public function getLevel(): string
+    public function getLevel(): LogLevel
     {
         return $this->level;
     }
 
     /**
-     * @return int
+     * @return LogCount
      */
-    public function getCount(): int
+    public function getCount(): LogCount
     {
         return $this->count;
     }

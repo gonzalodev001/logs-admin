@@ -20,9 +20,9 @@ monolog:
             process_psr_3_messages: false
             channels: ["!event", "!doctrine", "!console"]
 
-        es:
-            type: service
-            id: Symfony\Bridge\Monolog\Handler\ElasticsearchLogstashHandler
+#        es:
+#            type: service
+#            id: Symfony\Bridge\Monolog\Handler\ElasticsearchLogstashHandler
 
         master:
             type: rotating_file
@@ -34,4 +34,4 @@ monolog:
         create_log_entry_handler:
             type: service
             id: 'LaSalle\GroupSeven\Log\Infrastructure\Monolog\CreateLogEntryHandler'
-            channels: ["!event", "!messenger", "!logging"]
+            channels: ["!event", "!messenger", "!logging", "!doctrine", "!deprecation"]

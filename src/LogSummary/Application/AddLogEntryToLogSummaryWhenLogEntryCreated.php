@@ -8,6 +8,7 @@ use LaSalle\GroupSeven\Core\Domain\Framework\Event\DomainEventBus;
 use LaSalle\GroupSeven\Log\Domain\Event\LogEntryCreatedDomainEvent;
 use LaSalle\GroupSeven\LogSummary\Domain\LogSummary;
 use LaSalle\GroupSeven\LogSummary\Domain\Repository\LogSummaryRepository;
+use LaSalle\GroupSeven\LogSummary\Domain\ValueObject\LogCount;
 use Symfony\Component\Uid\Uuid;
 
 class AddLogEntryToLogSummaryWhenLogEntryCreated
@@ -18,9 +19,11 @@ class AddLogEntryToLogSummaryWhenLogEntryCreated
 
     public function __invoke(LogEntryCreatedDomainEvent $event): void
     {
-        $levelArray[] = strtolower($event->logEntry()->level());
+        $levelArray[] = strtolower($event->logEntry()->level()->level());
         $logSummaries = $this->repository->findByEnvironmentAndLevels($event->logEntry()->environment(), $levelArray);
+        dump($logSummaries);
         $level = $event->logEntry()->level();
+        $logCount = new LogCount(0);
         if (empty($logSummaries[0])) {
             $uuid = Uuid::v4();
             $id = $uuid->toRfc4122();
@@ -28,10 +31,10 @@ class AddLogEntryToLogSummaryWhenLogEntryCreated
                 $id,
                 $event->logEntry()->environment(),
                 $level,
-                0
+                $logCount
             );
         }
-        $logSummaries[0]->addCount();
+        $logSummaries[0]->count()->addCount();
         $this->repository->save($logSummaries[0]);
     }
 }

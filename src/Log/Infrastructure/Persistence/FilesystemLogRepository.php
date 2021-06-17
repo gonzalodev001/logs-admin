@@ -2,6 +2,7 @@
 
 namespace LaSalle\GroupSeven\Log\Infrastructure\Persistence;
 
+use LaSalle\GroupSeven\Core\Domain\ValueObject\LogLevel;
 use LaSalle\GroupSeven\Log\Domain\LogEntry;
 use LaSalle\GroupSeven\Log\Domain\Repository\LogRepository;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
@@ -24,10 +25,11 @@ final class FilesystemLogRepository implements LogRepository
                 $contentArrayFile = array_filter(explode("\n", $contents));
                 foreach ($contentArrayFile as $contentFileLine) {
                     $contentFileLineDecoded = json_decode($contentFileLine, true);
+                    $logLevel = new LogLevel($contentFileLineDecoded["level_name"]);
                     $contentArrayLogEntries[] = new LogEntry(
                         $contentFileLineDecoded["extra"]["uuid"],
                         $environment,
-                        $contentFileLineDecoded["level_name"],
+                        $logLevel,
                         $contentFileLineDecoded["message"],
                         $contentFileLineDecoded["datetime"]
                     );

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping   xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                        https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="LaSalle\GroupSeven\Log\Domain\LogEntry" table="log_entry">
+        <id name="id" type="string" column="id" length="36"/>
+
+        <field name="environment" type="string" column="environment"/>
+        <embedded name="level" class="LaSalle\GroupSeven\Core\Domain\ValueObject\LogLevel" use-column-prefix="false"/>
+        <field name="message" type="string" column="message"/>
+        <field name="occurredOn" type="string" column="occurredOn"/>
+    </entity>
+
+</doctrine-mapping>

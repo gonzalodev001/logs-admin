@@ -22,7 +22,7 @@ final class GetLogEntriesByEnvironmentUseCase
         $filteredArrayLogEntries = [];
         foreach ($arrayLogEntries as $logEntry)
         {
-            if (in_array(strtolower($logEntry->level()), $levelArray)) {
+            if (in_array(strtolower($logEntry->level()->level()), $levelArray)) {
                 $filteredArrayLogEntries[] = $logEntry;
             }
         }

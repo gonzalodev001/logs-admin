@@ -33,9 +33,9 @@ services:
     monolog.formatter.custom:
         class: Monolog\Formatter\JsonFormatter
 
-    Symfony\Bridge\Monolog\Handler\ElasticsearchLogstashHandler:
-        arguments:
-            $endpoint: '%env(MONOLOG_ELASTICSEARCH_ENDPOINT)%'
+#    Symfony\Bridge\Monolog\Handler\ElasticsearchLogstashHandler:
+#        arguments:
+#            $endpoint: '%env(MONOLOG_ELASTICSEARCH_ENDPOINT)%'
 
     #LaSalle\GroupSeven\Log\Infrastructure\Framework\Command\LogEntriesCommand: //4.4
         #tags: //4.3
@@ -72,12 +72,12 @@ services:
 
     LaSalle\GroupSeven\LogSummary\Application\GetLogSummariesByEnvironmentAndLevelsUseCase:
         arguments:
-            $repository: '@LaSalle\GroupSeven\LogSummary\Infrastructure\Persistence\CachePoolLogSummaryRepository'
+            $repository: '@LaSalle\GroupSeven\LogSummary\Infrastructure\Persistence\Doctrine\DoctrineLogSummaryRepository'
 
     LaSalle\GroupSeven\LogSummary\Application\AddLogEntryToLogSummaryWhenLogEntryCreated:
         tags: ['messenger.message_handler']
         arguments:
-            $repository: '@LaSalle\GroupSeven\LogSummary\Infrastructure\Persistence\CachePoolLogSummaryRepository'
+            $repository: '@LaSalle\GroupSeven\LogSummary\Infrastructure\Persistence\Doctrine\DoctrineLogSummaryRepository'
 
     LaSalle\GroupSeven\Log\Application\CreateLogEntryUseCase:
         arguments:

@@ -26,7 +26,7 @@ final class CachePoolLogSummaryRepository implements LogSummaryRepository
 
     public function save(LogSummary $logSummary): void
     {
-        $item = $this->cacheItemPoolInterface->getItem($logSummary->environment().strtolower($logSummary->level()));
+        $item = $this->cacheItemPoolInterface->getItem($logSummary->environment().strtolower($logSummary->level()->level()));
         $item->set($logSummary);
         $this->cacheItemPoolInterface->save($item);
     }

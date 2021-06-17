@@ -22,11 +22,11 @@ class ResgisterLogEntryController
     {
         try {
             $this->createLogEntryUseCase->__invoke(
-                $request->request->getAlpha('id'),
-                $request->request->getAlpha('environment'),
-                $request->request->getAlpha('level'),
-                $request->request->getAlpha('message'),
-                $request->request->getAlpha('occurredOn')
+                $request->request->get('id'),
+                $request->request->get('environment'),
+                strtoupper($request->request->get('level')),
+                $request->request->get('message'),
+                $request->request->get('occurredOn')
             );
             return new JsonResponse('Ok', Response::HTTP_OK);
         } catch (\Exception $e) {

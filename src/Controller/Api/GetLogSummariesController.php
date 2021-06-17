@@ -12,7 +12,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class GetLogSummariesController extends AbstractController
 {
-    public function __construct(private GetLogSummariesByEnvironmentAndLevelsUseCase $getLogSummariesByEnvironmentAndLevelsUseCase, private SerializerInterface $serializer)
+    public function __construct(private GetLogSummariesByEnvironmentAndLevelsUseCase $getLogSummariesByEnvironmentAndLevelsUseCase)
     {
 
     }
@@ -26,8 +26,8 @@ class GetLogSummariesController extends AbstractController
         }
         try {
             $logSummaries = $this->getLogSummariesByEnvironmentAndLevelsUseCase->__invoke($environment, $levels);
-            $jsonContent = $this->serializer->serialize($logSummaries, 'json');
-            return new JsonResponse($jsonContent, Response::HTTP_OK);
+
+            return $this->json($logSummaries, Response::HTTP_OK);
         }catch (\Exception $e) {
             return new JsonResponse($e->getMessage(), Response::HTTP_BAD_REQUEST);
         }

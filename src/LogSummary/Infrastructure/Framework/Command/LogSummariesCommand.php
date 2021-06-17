@@ -3,6 +3,7 @@
 namespace LaSalle\GroupSeven\LogSummary\Infrastructure\Framework\Command;
 
 use LaSalle\GroupSeven\LogSummary\Application\GetLogSummariesByEnvironmentAndLevelsUseCase;
+use LaSalle\GroupSeven\LogSummary\Domain\LogSummary;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
@@ -43,7 +44,7 @@ final class LogSummariesCommand extends Command
         $table = new Table($output);
         $table->setHeaders(['Id', 'environment', 'Level', 'Count']);
         foreach ($arrayLogSummaries as $logSummary) {
-            $table->addRow([$logSummary->id(), $logSummary->environment(), $logSummary->level(), $logSummary->count()]);
+            $table->addRow([$logSummary->id(), $logSummary->environment(), $logSummary->level()->level(), $logSummary->count()->count()]);
         }
         $table->render();
 

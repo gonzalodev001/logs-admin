@@ -2,9 +2,11 @@
 
 namespace LaSalle\GroupSeven\Log\Domain;
 
+use LaSalle\GroupSeven\Core\Domain\ValueObject\LogLevel;
+
 final class LogEntry
 {
-    public function __construct(private string $id, private string $environment, private string $level, private string $message, private string $occurredOn)
+    public function __construct(private string $id, private string $environment, private LogLevel $level, private string $message, private string $occurredOn)
     {
     }
 
@@ -13,7 +15,7 @@ final class LogEntry
         return $this->environment;
     }
 
-    public function level(): string
+    public function level(): LogLevel
     {
         return $this->level;
     }
