@@ -1,0 +1,6 @@
+@import "header.css";
+@import "list.css";
+
+body {
+    background-color: lightgray;
+}

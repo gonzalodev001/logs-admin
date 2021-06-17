@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Registro de usuario{% endblock %}
+
+{% block body %}
+    <h1 class="text-center">Summary for {{ environment }} and {{ level }}</h1>
+    <div class="container-fluid">
+    {% for logSummary in logSummaries %}
+        <ul class="list-group">
+            <li class="list-group-item bg-primary text-light">ID: {{ logSummary.id }}</li>
+            <li class="list-group-item bg-light">Evironment: {{ logSummary.environment }}</li>
+            <li class="list-group-item bg-light">Level: {{ logSummary.level.level }}</li>
+            <li class="list-group-item bg-light">Count: {{ logSummary.count.count }}</li>
+        </ul>
+    {% endfor %}
+    </div>
+{% endblock %}
