@@ -12,12 +12,14 @@ class User
     private string $id;
     private string $mail;
     private string $password;
+    private array $roles;
 
     public function __construct(string $id, string $mail, string $password)
     {
         $this->id = $id;
         $this->mail = $mail;
         $this->password = $password;
+        $this->roles[] = 'ROLE_USER';
     }
 
     public function id(): string
@@ -35,10 +37,15 @@ class User
         return $this->password;
     }
 
-    public function userRegistration(string $id, string $mail, string $password): User
+    public function roles(): array
     {
+        return $this->roles;
+    }
 
-        return new self($id, $mail, $password);
+    public static function userRegistration(string $id, string $mail, string $password): User
+    {
+        self::validatePassword($password);
+        return new self($id, $mail, $password,);
     }
 
     public static function validatePassword(string $password): void
@@ -47,4 +54,43 @@ class User
             throw new InvalidPassword($password);
         }
     }
+
+    public function addRole(string $role): void
+    {
+        $this->roles[] = $role;
+    }
+
+    /**
+     * @return string
+     */
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMail(): string
+    {
+        return $this->mail;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRoles(): array
+    {
+        return $this->roles;
+    }
+
+
 }
