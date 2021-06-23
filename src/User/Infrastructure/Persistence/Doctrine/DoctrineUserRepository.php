@@ -19,4 +19,14 @@ class DoctrineUserRepository implements UserRepository
         $this->entityManager->persist($user);
         $this->entityManager->flush();
     }
+
+    public function findByEmail(string $mail): bool
+    {
+        $repository = $this->entityManager->getRepository(User::class);
+        $user = $repository->findOneBy(['mail' => $mail]);
+        if ($user) {
+           return true;
+        }
+        return false;
+    }
 }
