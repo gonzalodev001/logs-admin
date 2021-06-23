@@ -25,3 +25,8 @@ doctrine:
               type: xml
               dir: '%kernel.project_dir%/src/LogSummary/Infrastructure/Persistence/Doctrine/Resources/Mapping'
               prefix: 'LaSalle\GroupSeven\LogSummary\Domain'
+            LaSalleGroupSevenUserDomain:
+              is_bundle: false
+              type: xml
+              dir: '%kernel.project_dir%/src/User/Infrastructure/Persistence/Doctrine/Resources/Mapping'
+              prefix: 'LaSalle\GroupSeven\User\Domain'

@@ -12,7 +12,7 @@ class CustomProcessor implements ProcessorInterface
         $uuid = Uuid::v4();
         $id = $uuid->toRfc4122();
         $record['extra']['uuid'] = $id;
-        $record['extra']['env'] = $_ENV['APP_ENV'];
+        $record['extra']['env'] ='dev'; // $_ENV['APP_ENV'];
         $record['extra']['env_alias'] = $_ENV['APP_ENV_ALIAS'];
         return $record;
     }

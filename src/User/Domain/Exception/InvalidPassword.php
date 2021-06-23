@@ -20,6 +20,6 @@ class InvalidPassword extends DomainError
 
     protected function errorMessage(): string
     {
-        return sprintf('The password provided <%s> is invalid. It should contain one capital letter and one number ', $this->password);
+        return sprintf('The password provided is invalid. It should contain one capital letter, one number and least 8 characters ', $this->password);
     }
 }

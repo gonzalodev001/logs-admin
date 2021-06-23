@@ -4,6 +4,7 @@
 namespace LaSalle\GroupSeven\User\Domain;
 
 
+use LaSalle\GroupSeven\User\Domain\Exception\InvalidEmail;
 use LaSalle\GroupSeven\User\Domain\Exception\InvalidPassword;
 
 class User
@@ -44,6 +45,7 @@ class User
 
     public static function userRegistration(string $id, string $mail, string $password): User
     {
+        self::validateEmail($mail);
         self::validatePassword($password);
         return new self($id, $mail, $password,);
     }
@@ -52,6 +54,13 @@ class User
     {
         if (!preg_match(self::pattern, $password)) {
             throw new InvalidPassword($password);
+        }
+    }
+
+    public static function validateEmail(string $email): void
+    {
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            throw new InvalidEmail($email);
         }
     }
 
