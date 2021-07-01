@@ -15,13 +15,13 @@ class RegisterUser
     {
     }
 
-    public function __invoke(string $id, string $mail, string $password)
+    public function __invoke(string $id, string $mail, string $password, string $confirmPassword)
     {
         $verify = $this->userRepository->findByEmail($mail);
         if ($verify) {
             throw new ExistingUser();
         }
-        $user = User::userRegistration($id, $mail, $password);
+        $user = User::userRegistration($id, $mail, $password, $confirmPassword);
         $this->userRepository->save($user);
     }
 }

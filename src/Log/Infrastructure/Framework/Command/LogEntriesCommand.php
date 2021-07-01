@@ -20,7 +20,7 @@ final class LogEntriesCommand extends Command
 
     protected function configure(): void
     {
-        $this->addArgument('environment', InputArgument::OPTIONAL, 'Only show the logs in the given environment <comment>[default: "'.$_ENV['APP_ENV'].'"]</comment>');
+        $this->addArgument('environment', InputArgument::OPTIONAL, 'Only show the logs in the given environment <comment>[default: ""]</comment>');
         $this->addOption('level','l', InputOption::VALUE_IS_ARRAY | InputOption::VALUE_OPTIONAL, 'Filter the levels to show');
     }
 
