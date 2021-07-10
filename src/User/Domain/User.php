@@ -100,6 +100,14 @@ class User implements UserInterface
     }
 
     /**
+     * @param string $password
+     */
+    public function setPassword(string $password): void
+    {
+        $this->password = $password;
+    }
+
+    /**
      * @return string
      */
     public function getMail(): string

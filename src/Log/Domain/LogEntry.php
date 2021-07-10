@@ -19,4 +19,46 @@ final class LogEntry
     {
         return $this->level;
     }
+
+    /**
+     * @return string
+     */
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEnvironment(): string
+    {
+        return $this->environment;
+    }
+
+    /**
+     * @return LogLevel
+     */
+    public function getLevel(): LogLevel
+    {
+        return $this->level;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMessage(): string
+    {
+        return $this->message;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOccurredOn(): string
+    {
+        return $this->occurredOn;
+    }
+
+
 }

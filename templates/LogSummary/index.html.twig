@@ -1,10 +1,26 @@
-{% extends 'base.html.twig' %}
+{% extends 'dashboard.html.twig' %}
 
-{% block title %}Registro de usuario{% endblock %}
+{% block title %}Registro de Log Entries{% endblock %}
 
-{% block body %}
-    <h1 class="text-center">Summary for {{ controller_name  }}</h1>
+{% block main %}
+    <h1 class="text-center">Summary for Dev</h1>
     <div class="container-fluid">
-      {{ controller_name }}
+        <table class="customers">
+            <tr>
+                <th>ID</th>
+                <th>Nivel</th>
+                <th>Cantidad</th>
+                <th>Última actualizacion</th>
+            </tr>
+            {% for logSummary in logSummaries %}
+                <tr>
+                    <td>{{ logSummary.id }}</td>
+                    <td>{{ logSummary.level.level }}</td>
+                    <td>{{ logSummary.count.count }}</td>
+                    <td>Germany</td>
+                </tr>
+            {% endfor %}
+
+        </table>
     </div>
 {% endblock %}

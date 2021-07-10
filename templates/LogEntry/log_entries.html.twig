@@ -1,0 +1,49 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block title %}Lista de Log Entries{% endblock %}
+
+{% block main %}
+    <h1 class="text-center">Registro de Log Entries</h1>
+    <div class="container-fluid">
+        <a class="buttonPag button1" href="{{ path('list_log_entry', {environment: environment, currentPage: this_page - 1 < 1 ? 1 : this_page-1, limit: 5}) }}">5</a>
+        <a class="buttonPag button1" href="{{ path('list_log_entry', {environment: environment, currentPage: this_page - 1 < 1 ? 1 : this_page-1, limit: 10}) }}">10</a>
+        <a class="buttonPag button1" href="{{ path('list_log_entry', {environment: environment, currentPage: this_page - 1 < 1 ? 1 : this_page-1, limit: 50}) }}">50</a>
+        <table class="customers">
+            <tr>
+                <th>ID</th>
+                <th>Nivel</th>
+                <th>Mensaje</th>
+                <th>Ocurrió</th>
+            </tr>
+            {% for log_entry in log_entries %}
+                <tr>
+                    <td>{{ log_entry.id }}</td>
+                    <td>{{ log_entry.level.level }}</td>
+                    <td>{{ log_entry.message }}</td>
+                    <td>{{ log_entry.occurredOn| date }}</td>
+                </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+    <p> Show from <strong>{{ this_page }}</strong> to <strong>{{ this_page + 1 }}</strong> of <strong>{{ max_pages }}</strong></p>
+    {% if max_pages > 1 %}
+        <ul class="pagination">
+            {%if this_page > 1 %}
+                <li >
+                    <a href="{{ path('list_log_entry', {environment: environment, currentPage: this_page - 1 < 1 ? 1 : this_page-1, limit: limit}) }}">«</a>
+                </li>
+            {% endif %}
+
+            {# Render each page number #}
+
+
+            {# `»` arrow #}
+            {%if this_page < max_pages %}
+                <li>
+                    <a href="{{ path('list_log_entry', {environment: environment, currentPage: this_page+1 <= max_pages ? this_page+1 : this_page}) }}">»</a>
+                </li>
+            {% endif %}
+        </ul>
+    {% endif %}
+{% endblock %}

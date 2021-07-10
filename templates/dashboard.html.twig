@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+
+
+    <div class="header">
+        <a href="#default" class="logo">You are logged in as {{ app.user.username }}</a>
+        <div class="header-right">
+            <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="sidebar">
+            <a href="/log-summary/dev"><i class="fa fa-fw fa-home"></i> Resumen</a>
+            <a href="/log-entry/dev"><i class="fa fa-fw fa-wrench"></i> Registros</a>
+
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="#clients"><i class="fa fa-fw fa-user"></i> Registros</a>
+            {% endif %}
+            <p>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+
+                <br>
+
+
+            </p>
+
+        </div>
+        <div class="main" >
+            {% block main %} {% endblock %}
+        </div>
+    </div>
+{% endblock %}

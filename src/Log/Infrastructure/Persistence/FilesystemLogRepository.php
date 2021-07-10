@@ -14,7 +14,7 @@ final class FilesystemLogRepository implements LogRepository
     {
     }
 
-    public function findLogEntriesByEnvironment(string $environment): array
+    public function findLogEntriesByEnvironment(string $environment, int $currentPage, int $limit): array
     {
         $finder = new Finder();
         $finder->files()->in($this->parameterBag->get('kernel.logs_dir'))->name($environment.'*.log');

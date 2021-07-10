@@ -86,3 +86,6 @@ services:
     LaSalle\GroupSeven\Controller\Api\GetLogSummariesController:
         arguments:
             $getLogSummariesByEnvironmentAndLevelsUseCase: '@LaSalle\GroupSeven\LogSummary\Application\GetLogSummariesByEnvironmentAndLevelsUseCase'
+
+    LaSalle\GroupSeven\Log\Domain\Repository\LogRepository:
+        '@LaSalle\GroupSeven\Log\Infrastructure\Persistence\Doctrine\DoctrineLogEntryRepository'
