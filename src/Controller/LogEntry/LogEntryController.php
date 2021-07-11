@@ -22,8 +22,6 @@ class LogEntryController extends AbstractController
     #[Route('/log-entry/{environment}', name: 'list_log_entry', methods: ['GET'])]
     public function allEntries(string $environment, Request $request): Response
     {
-        //
-
         $currentPage = $request->get('currentPage');
         if(is_null($currentPage)) {
             $currentPage = 1;
@@ -35,11 +33,13 @@ class LogEntryController extends AbstractController
         }
 
         $logEntries = $this->allLogEntriesByEnvironmentUseCase->__invoke($environment, $currentPage, $limit);
+
         /**@var Paginator $paginator*/
         $paginator = $logEntries['paginator'];
         $logEntriesResult = $logEntries['paginator'];
         $logEntriesQuery = $logEntries['query'];
-        $maxPages = ceil($paginator->count() / $limit);
+        $logEntriesLimitPaginate = $logEntries['limit'];
+        $maxPages = ceil($paginator->count() / $logEntriesLimitPaginate);
 
         return $this->render('LogEntry/log_entries.html.twig',[
             'log_entries' => $logEntriesResult,
@@ -47,7 +47,7 @@ class LogEntryController extends AbstractController
             'this_page' => $currentPage,
             'all_items' => $logEntriesQuery,
             'environment' => $environment,
-            'limit' => $limit
+            'limit_paginate' => $logEntriesLimitPaginate
         ]);
     }
 }

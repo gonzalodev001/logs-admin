@@ -31,17 +31,23 @@
         <ul class="pagination">
             {%if this_page > 1 %}
                 <li >
-                    <a href="{{ path('list_log_entry', {environment: environment, currentPage: this_page - 1 < 1 ? 1 : this_page-1, limit: limit}) }}">«</a>
+                    <a href="{{ path('list_log_entry', {environment: environment, currentPage: this_page - 1 < 1 ? 1 : this_page-1, limit: limit_paginate}) }}">«</a>
                 </li>
             {% endif %}
 
             {# Render each page number #}
+                <li >
+                    <a href="{{ path('list_log_entry', {environment: environment, currentPage: 1, limit: limit_paginate}) }}">1</a>
+                </li>
 
+                <li >
+                    <a href="{{ path('list_log_entry', {environment: environment, currentPage: max_pages, limit: limit_paginate}) }}"><strong>{{ max_pages }}</strong></a>
+                </li>
 
             {# `»` arrow #}
             {%if this_page < max_pages %}
                 <li>
-                    <a href="{{ path('list_log_entry', {environment: environment, currentPage: this_page+1 <= max_pages ? this_page+1 : this_page}) }}">»</a>
+                    <a href="{{ path('list_log_entry', {environment: environment, currentPage: this_page+1 <= max_pages ? this_page+1 : this_page, limit: limit_paginate}) }}">»</a>
                 </li>
             {% endif %}
         </ul>

@@ -86,9 +86,10 @@ class User implements UserInterface
         }
     }
 
-    public function addRole(string $role): void
+    public function addRole(string $role): array
     {
-        $this->roles[] = $role;
+        $this->roles[] = 'ROLE_'.filter_var($role, FILTER_SANITIZE_STRING);
+        return $this->roles;
     }
 
     /**
@@ -131,7 +132,6 @@ class User implements UserInterface
         return $this->roles;
     }
 
-
     public function getSalt()
     {
         // TODO: Implement getSalt() method.
@@ -146,4 +146,14 @@ class User implements UserInterface
     {
         // TODO: Implement eraseCredentials() method.
     }
+
+    /**
+     * @param array $roles
+     */
+    public function setRoles(array $roles): void
+    {
+        $this->roles = $roles;
+    }
+
+
 }
