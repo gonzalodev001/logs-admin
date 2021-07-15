@@ -89,3 +89,6 @@ services:
 
     LaSalle\GroupSeven\Log\Domain\Repository\LogRepository:
         '@LaSalle\GroupSeven\Log\Infrastructure\Persistence\Doctrine\DoctrineLogEntryRepository'
+
+    LaSalle\GroupSeven\Core\Domain\Framework\Event\DomainEventBus:
+        alias: 'LaSalle\GroupSeven\Core\Infrastructure\Framework\Event\SymfonyMessengerDomainEventBus'

@@ -9,6 +9,7 @@ final class LogEntryCreatedDomainEvent extends DomainEvent
 {
     public function __construct(private LogEntry $logEntry)
     {
+        parent::__construct();
     }
 
     public function logEntry(): LogEntry
