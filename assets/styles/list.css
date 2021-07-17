@@ -22,3 +22,25 @@
     background-color: #04AA6D;
     color: white;
 }
+
+/***   */
+.customers td .label {
+    color: white;
+    padding: 8px;
+}
+
+.customers td .success {
+    background-color: #04AA6D;
+} /* Green */
+.customers td .info {
+    background-color: #2196F3;
+} /* Blue */
+.customers td .warning {
+    background-color: #ff9800;
+} /* Orange */
+.customers td .danger {
+    background-color: #f44336;
+} /* Red */
+.customers td .other {
+    background-color: #e7e7e7; color: black;
+} /* Gray */

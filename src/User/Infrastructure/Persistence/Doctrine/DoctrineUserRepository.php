@@ -45,9 +45,4 @@ class DoctrineUserRepository implements UserRepository
         $user->setRoles($roles);
         $this->entityManager->flush();
     }
-
-    public function sendMail(): void
-    {
-        // TODO: Implement sendMail() method.
-    }
 }

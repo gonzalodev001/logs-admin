@@ -15,10 +15,10 @@
     <div class="row">
         <div class="sidebar">
             <a href="/log-summary/dev"><i class="fa fa-fw fa-home"></i> Resumen</a>
-            <a href="/log-entry/dev"><i class="fa fa-fw fa-wrench"></i> Registros</a>
 
-            {% if is_granted('ROLE_ADMIN') %}
-                <a href="#clients"><i class="fa fa-fw fa-user"></i> Registros</a>
+
+            {% if is_granted('ROLE_DEVELOPER') %}
+                <a href="/log-entry/dev"><i class="fa fa-fw fa-user"></i> Registros</a>
             {% endif %}
             <p>
                 <br>

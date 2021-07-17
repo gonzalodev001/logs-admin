@@ -4,60 +4,49 @@
 namespace LaSalle\GroupSeven\User\Infrastructure\Framework\Mailer;
 
 
+use LaSalle\GroupSeven\Core\Domain\Framework\Repository\MailRepository;
 use LaSalle\GroupSeven\User\Domain\User;
-use LaSalle\GroupSeven\User\Domain\UserRepository;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
-use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 
-class MailerRepository implements UserRepository
+class MailerRepository implements MailRepository
 {
 
     public function __construct(private MailerInterface $mailer)
     {
     }
 
-    public function sendMail(): void
+    public function sendMail(User $user): void
     {
-        /*$email = (new Email())
-            ->from('hello@example.com')
-            ->to('you@example.com')
-            //->cc('cc@example.com')
-            //->bcc('bcc@example.com')
-            //->replyTo('fabien@example.com')
-            //->priority(Email::PRIORITY_HIGH)
-            ->subject('Time for Symfony Mailer!')
-            ->text('Sending emails is fun again!')
-            ->html('<p>See Twig integration for better HTML integration!</p>');*/
-        $email = (new TemplatedEmail())
-            ->from('fabien@example.com')
-            ->to(new Address('ryan@example.com'))
-            ->subject('Thanks for signing up!')
+        /**/
+      $email = (new Email())
+           ->from('hello@example.com')
+           ->to($user->mail())
+           //->cc('cc@example.com')
+           //->bcc('bcc@example.com')
+           //->replyTo('fabien@example.com')
+           //->priority(Email::PRIORITY_HIGH)
+           ->subject('! Bienvenido !')
+           ->text('Sending emails is fun again!')
+           ->html(
+               '
+                      <body>
+                        <div style="text-align: center; padding-top: 80px;">
+                            <h1>! Bienvenido !</h1>
+                            <p>Estamos emocionados de tenerte en nuestra plataforma, no dude en comunicarse con nosotros para culaquier duda.!</p>
+                            <br><a href="http://localhost:8080/login">Conectarse</a>
+                            <p>Desarrollado por Gonzalo.</p>
+                        </div>
+                      </body>'
+           );
+        try {
+            $this->mailer->send($email);
+        } catch (TransportExceptionInterface $e) {
+            echo $e->getMessage();
+        }
 
-            // path of the Twig template to render
-            ->htmlTemplate('emails/signup.html.twig')
 
-            // pass variables (name => value) to the template
-            ->context([
-                'expiration_date' => new \DateTime('+7 days'),
-                'username' => 'foo',
-            ])
-        ;
-        $this->mailer->send($email);
     }
 
-    public function save(User $user): void
-    {
-        // TODO: Implement save() method.
-    }
-
-    public function findByEmail(string $mail): bool
-    {
-        // TODO: Implement findByEmail() method.
-    }
-
-    public function addRoleToUser(string $id, string $role): void
-    {
-        // TODO: Implement addRoleToUser() method.
-    }
 }

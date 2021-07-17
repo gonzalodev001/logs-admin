@@ -12,8 +12,8 @@ final class SymfonyMessengerDomainEventBus implements DomainEventBus
     {
     }
 
-    public function publish(DomainEvent $event): void
+    public function publish(DomainEvent ...$event): void
     {
-        $this->messageBus->dispatch($event);
+        $this->messageBus->dispatch(...$event);
     }
 }

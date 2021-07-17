@@ -92,3 +92,23 @@ services:
 
     LaSalle\GroupSeven\Core\Domain\Framework\Event\DomainEventBus:
         alias: 'LaSalle\GroupSeven\Core\Infrastructure\Framework\Event\SymfonyMessengerDomainEventBus'
+
+    LaSalle\GroupSeven\User\Domain\UserRepository:
+        alias: 'LaSalle\GroupSeven\User\Infrastructure\Persistence\Doctrine\DoctrineUserRepository'
+
+
+    #registrar SendMailWhenUserRegister como listener del evento UserRegisteredDomainEnvent, con Symfony Messenger para el repositorio mailer
+        #LaSalle\GroupSeven\User\Application\SendEmailWhenUserRegistered:
+        #tags: [ 'messenger.message_handler' ]
+            #arguments:
+          #$mailRepository: '@LaSalle\GroupSeven\User\Infrastructure\Framework\Mailer\MailerRepository'
+
+        #LaSalle\GroupSeven\User\Application\SendEmailWhenUserRegistered:
+        #tags: ['kernel.event_listener']
+            #arguments:
+        #$mailRepository: '@LaSalle\GroupSeven\User\Infrastructure\Framework\Mailer\MailerRepository'
+
+    symfony.messenger.handler.send_email_when_user_registered:
+        class: LaSalle\GroupSeven\User\Application\SendEmailWhenUserRegistered
+        tags:
+            - { name: messenger.message_handler }

@@ -23,7 +23,3 @@ class UserType extends AbstractType
             ->add('Registrar', SubmitType::class);
     }
 }
-//$id;
-//$mail;
-   //$password;
-   //$roles;

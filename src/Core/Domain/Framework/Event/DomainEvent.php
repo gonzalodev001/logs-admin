@@ -6,14 +6,14 @@ use DateTimeImmutable;
 
 abstract class DomainEvent
 {
-    private string $occurredOn;
+    private DateTimeImmutable $occurredOn;
 
     public function __construct(string $occurredOn = null)
     {
-        $this->occurredOn =  $occurredOn ?: new DateTimeImmutable();
+        $this->occurredOn =  $occurredOn ? : new DateTimeImmutable();
     }
 
-    public function occurredOn(): string
+    public function occurredOn(): DateTimeImmutable
     {
         return $this->occurredOn;
     }

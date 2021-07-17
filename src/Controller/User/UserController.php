@@ -57,6 +57,10 @@ class UserController extends AbstractController
                 catch (\Exception $exception) {
                     $errors['exception'] = $exception->getMessage();
                 }
+
+                //return $this->redirect('/log-summary/dev');
+                //return $this->redirectToRoute('dashboard_summary', );
+                return $this->render('Emails/confirm_registration.html.twig');
             }
 
             return $this->render('User/Register_User.html.twig',

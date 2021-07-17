@@ -18,7 +18,24 @@
             {% for log_entry in log_entries %}
                 <tr>
                     <td>{{ log_entry.id }}</td>
-                    <td>{{ log_entry.level.level }}</td>
+                    <td>
+
+                        {% if log_entry.level.level == 'INFO' %}
+                            <span class="label info">{{ log_entry.level.level }}</span>
+                        {% endif %}
+                        {% if log_entry.level.level == 'DEBUG' %}
+                            <span class="label success">{{ log_entry.level.level }}</span>
+                        {% endif %}
+                        {% if log_entry.level.level == 'WARNING' %}
+                            <span class="label warning">{{ log_entry.level.level }}</span>
+                        {% endif %}
+                        {% if log_entry.level.level == 'ERROR' %}
+                            <span class="label danger">{{ log_entry.level.level }}</span>
+                        {% endif %}
+                        {% if log_entry.level.level == 'CRITICAL' %}
+                            <span class="label danger">{{ log_entry.level.level }}</span>
+                        {% endif %}
+                    </td>
                     <td>{{ log_entry.message }}</td>
                     <td>{{ log_entry.occurredOn| date }}</td>
                 </tr>
