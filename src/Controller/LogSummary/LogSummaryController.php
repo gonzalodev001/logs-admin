@@ -21,7 +21,7 @@ class LogSummaryController extends AbstractController
     {
         $logSummaries = $this->repository->__invoke($environment);
         return $this->render('LogSummary/index.html.twig', [
-            'logSummaries' => $logSummaries
+            'log_summaries' => $logSummaries
         ]);
     }
 }

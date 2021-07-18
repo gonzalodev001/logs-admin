@@ -5,9 +5,13 @@
 {% block main %}
     <h1 class="text-center">Registro de Log Entries</h1>
     <div class="container-fluid">
-        <a class="buttonPag button1" href="{{ path('list_log_entry', {environment: environment, currentPage: this_page - 1 < 1 ? 1 : this_page-1, limit: 5}) }}">5</a>
-        <a class="buttonPag button1" href="{{ path('list_log_entry', {environment: environment, currentPage: this_page - 1 < 1 ? 1 : this_page-1, limit: 10}) }}">10</a>
-        <a class="buttonPag button1" href="{{ path('list_log_entry', {environment: environment, currentPage: this_page - 1 < 1 ? 1 : this_page-1, limit: 50}) }}">50</a>
+        <div class="for-pagination">
+            <a>Paginar por </a>
+            <a class="buttonPag button1" href="{{ path('list_log_entry', {environment: environment, currentPage: this_page - 1 < 1 ? 1 : this_page-1, limit: 5}) }}">5</a>
+            <a class="buttonPag button1" href="{{ path('list_log_entry', {environment: environment, currentPage: this_page - 1 < 1 ? 1 : this_page-1, limit: 10}) }}">10</a>
+            <a class="buttonPag button1" href="{{ path('list_log_entry', {environment: environment, currentPage: this_page - 1 < 1 ? 1 : this_page-1, limit: 50}) }}">50</a>
+        </div>
+
         <table class="customers">
             <tr>
                 <th>ID</th>
@@ -43,16 +47,18 @@
 
         </table>
     </div>
-    <p> Show from <strong>{{ this_page }}</strong> to <strong>{{ this_page + 1 }}</strong> of <strong>{{ max_pages }}</strong></p>
-    {% if max_pages > 1 %}
-        <ul class="pagination">
-            {%if this_page > 1 %}
-                <li >
-                    <a href="{{ path('list_log_entry', {environment: environment, currentPage: this_page - 1 < 1 ? 1 : this_page-1, limit: limit_paginate}) }}">«</a>
-                </li>
-            {% endif %}
 
-            {# Render each page number #}
+    <div class="pg-container">
+        <p> Show from <strong>{{ this_page }}</strong> to <strong>{{ this_page + 1 }}</strong> of <strong>{{ max_pages }}</strong></p>
+        {% if max_pages > 1 %}
+            <ul class="pagination">
+                {%if this_page > 1 %}
+                    <li >
+                        <a href="{{ path('list_log_entry', {environment: environment, currentPage: this_page - 1 < 1 ? 1 : this_page-1, limit: limit_paginate}) }}">«</a>
+                    </li>
+                {% endif %}
+
+                {# Render each page number #}
                 <li >
                     <a href="{{ path('list_log_entry', {environment: environment, currentPage: 1, limit: limit_paginate}) }}">1</a>
                 </li>
@@ -61,12 +67,14 @@
                     <a href="{{ path('list_log_entry', {environment: environment, currentPage: max_pages, limit: limit_paginate}) }}"><strong>{{ max_pages }}</strong></a>
                 </li>
 
-            {# `»` arrow #}
-            {%if this_page < max_pages %}
-                <li>
-                    <a href="{{ path('list_log_entry', {environment: environment, currentPage: this_page+1 <= max_pages ? this_page+1 : this_page, limit: limit_paginate}) }}">»</a>
-                </li>
-            {% endif %}
-        </ul>
+                {# `»` arrow #}
+                {%if this_page < max_pages %}
+                    <li>
+                        <a href="{{ path('list_log_entry', {environment: environment, currentPage: this_page+1 <= max_pages ? this_page+1 : this_page, limit: limit_paginate}) }}">»</a>
+                    </li>
+                {% endif %}
+            </ul>
+    </div>
+
     {% endif %}
 {% endblock %}

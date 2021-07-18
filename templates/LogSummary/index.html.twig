@@ -8,16 +8,38 @@
         <table class="customers">
             <tr>
                 <th>ID</th>
+                <th>Entorno</th>
                 <th>Nivel</th>
                 <th>Cantidad</th>
-                <th>Última actualizacion</th>
+
             </tr>
-            {% for logSummary in logSummaries %}
+            {% for log_summary in log_summaries %}
                 <tr>
-                    <td>{{ logSummary.id }}</td>
-                    <td>{{ logSummary.level.level }}</td>
-                    <td>{{ logSummary.count.count }}</td>
-                    <td>Germany</td>
+                    <td>{{ log_summary.id }}</td>
+                    <td>{{ log_summary.environment}}</td>
+                    <td>
+                        {% if log_summary.level.level == 'INFO' %}
+                            <span class="label info">{{ log_summary.level.level }}</span>
+                        {% endif %}
+
+                        {% if log_summary.level.level == 'DEBUG' %}
+                            <span class="label success">{{ log_summary.level.level }}</span>
+                        {% endif %}
+
+                        {% if log_summary.level.level == 'WARNING' %}
+                            <span class="label warning">{{ log_summary.level.level }}</span>
+                        {% endif %}
+
+                        {% if log_summary.level.level == 'ERROR' %}
+                            <span class="label danger">{{ log_summary.level.level }}</span>
+                        {% endif %}
+
+                        {% if log_summary.level.level == 'CRITICAL' %}
+                            <span class="label danger">{{ log_summary.level.level }}</span>
+                        {% endif %}
+
+                    </td>
+                    <td>{{ log_summary.count.count }}</td>
                 </tr>
             {% endfor %}
 

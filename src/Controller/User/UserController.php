@@ -10,6 +10,7 @@ use LaSalle\GroupSeven\User\Domain\Exception\InvalidConfirmPassword;
 use LaSalle\GroupSeven\User\Domain\Exception\InvalidEmail;
 use LaSalle\GroupSeven\User\Domain\Exception\InvalidPassword;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -29,6 +30,7 @@ class UserController extends AbstractController
                 "password" => "",
                 "existing_user" => "",
                 "confirm_password" => "",
+                "code_error" => "",
                 "exception" => ""
             );
             $form = $this->createForm(UserType::class);
@@ -45,14 +47,19 @@ class UserController extends AbstractController
                     );
                 }catch (InvalidEmail $invalidEmail) {
                     $errors['email'] = $invalidEmail->getMessage();
+                    $errors['code_error'] = $invalidEmail->errorCode();
 
                 } catch (InvalidPassword $invalidPassword) {
                     $errors['password'] = $invalidPassword->getMessage();
+                    $errors['code_error'] = $invalidPassword->errorCode();
 
                 }  catch (ExistingUser $existingUser) {
                     $errors['existing_user'] = $existingUser->getMessage();
+                    $errors['code_error'] = $existingUser->errorCode();
+
                 } catch (InvalidConfirmPassword $invalidConfirmPassword) {
                     $errors['confirm_password'] = $invalidConfirmPassword->getMessage();
+                    $errors['code_error'] = $invalidConfirmPassword->errorCode();
                 }
                 catch (\Exception $exception) {
                     $errors['exception'] = $exception->getMessage();
@@ -60,7 +67,10 @@ class UserController extends AbstractController
 
                 //return $this->redirect('/log-summary/dev');
                 //return $this->redirectToRoute('dashboard_summary', );
-                return $this->render('Emails/confirm_registration.html.twig');
+                if (!$form->getErrors()) {
+                    return $this->render('Emails/confirm_registration.html.twig');
+                }
+
             }
 
             return $this->render('User/Register_User.html.twig',

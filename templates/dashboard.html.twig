@@ -6,7 +6,7 @@
 
 
     <div class="header">
-        <a href="#default" class="logo">You are logged in as {{ app.user.username }}</a>
+        <a href="#default" class="logo">You are logged in as <span class="label info">{{ app.user.roles[1] }} </span>{{ app.user.mail }}</a>
         <div class="header-right">
             <a href="{{ path('app_logout') }}">Logout</a>
         </div>

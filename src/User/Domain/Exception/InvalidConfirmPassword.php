@@ -11,7 +11,7 @@ class InvalidConfirmPassword extends DomainError
 
     public function errorCode(): string
     {
-        return 'Invalid_confirm_password';
+        return 'invalid_confirm_password';
     }
 
     protected function errorMessage(): string
