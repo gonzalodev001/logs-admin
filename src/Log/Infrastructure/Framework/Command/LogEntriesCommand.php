@@ -34,7 +34,7 @@ final class LogEntriesCommand extends Command
         if (is_null($logEnv)) {
             $logEnv = $_ENV['APP_ENV'];
         }
-        dump($this->getLogEntriesByEnvironmentUseCase->__invoke($logEnv, $logLevelArray));
+        //dump($this->getLogEntriesByEnvironmentUseCase->__invoke($logEnv, $logLevelArray));
         return 0;
     }
 }

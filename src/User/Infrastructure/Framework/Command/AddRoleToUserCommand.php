@@ -10,6 +10,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ChoiceQuestion;
+use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Question\Question;
 
 class AddRoleToUserCommand extends Command
@@ -25,7 +26,7 @@ class AddRoleToUserCommand extends Command
     {
     }
 
-    public function execute(InputInterface $input, OutputInterface $output)
+    public function execute(InputInterface $input, OutputInterface $output): int
     {
         $helper = $this->getHelper('question');
         $question = new Question(PHP_EOL.'<info>Please, input the user identifier:</info>'. PHP_EOL.'> ');
@@ -40,9 +41,15 @@ class AddRoleToUserCommand extends Command
         $roles = $helper->ask($input, $output, $question);
         try {
             $this->addRoleToUserUseCase->__invoke($id, $roles);
+            $output->write('You are about to give the user ');
+            $output->write('<comment>'. $id .'</comment>');
+            $output->write(' the next role: ');
+            $output->writeln('<comment>'. $roles.' </comment>');
         } catch (UserNotFoundException $exception) {
             $output->writeln('<error>Error: $exception->getMessage()</error>');
         }
-        $question->setMaxAttempts(2);
+        $output->writeln('Added role developer to user <comment>'. $id.' </comment>');
+        //$question->setMaxAttempts(2);
+        return 0;
     }
 }

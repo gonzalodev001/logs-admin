@@ -25,14 +25,15 @@ class UserController extends AbstractController
     #[Route('/register', name: 'RegisterUser')]
     public function register(Request $request): Response
     {
-            $errors = array(
+            /*$errors = array(
                 "email" => "",
                 "password" => "",
                 "existing_user" => "",
                 "confirm_password" => "",
                 "code_error" => "",
                 "exception" => ""
-            );
+            );*/
+            $errors = array();
             $form = $this->createForm(UserType::class);
             $form->handleRequest($request);
             if($form->isSubmitted() && $form->isValid()) {
@@ -67,7 +68,8 @@ class UserController extends AbstractController
 
                 //return $this->redirect('/log-summary/dev');
                 //return $this->redirectToRoute('dashboard_summary', );
-                if (!$form->getErrors()) {
+
+                if (empty($errors)) {
                     return $this->render('Emails/confirm_registration.html.twig');
                 }
 

@@ -5,7 +5,7 @@
 {% block body %}
 
     <div class="container">
-        <h1>Register</h1>
+        <h1>Sign Up</h1>
         <p>Please fill in this form to create an account.</p>
         <hr class=".hr">
         {{ form_start(form) }}
@@ -44,7 +44,7 @@
                 {{ form_row(form.Registrar, {'attr': {'class': 'button'}}) }}
             </div>
             <div class="container signin">
-                <p>Already have an account? <a href="#">Sign in</a>.</p>
+                <p>Already have an account? <a href="{{ path('app_login') }}">Sign in</a>.</p>
             </div>
         {{ form_end(form) }}
     </div>
