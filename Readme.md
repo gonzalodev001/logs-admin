@@ -1,27 +1,10 @@
-# Practice 1
+# Administrador de logs del entorno de Symfony
 
-## Pregunta 1.3
+Aplicación web para el monitoreo de logs del FrameWork Symfony, que visualiza los registros de logs en diversos niveles.
+hay dos tipos de usuarios que acceden a la plataforma, que se clasifican en dos roles, tenemos usuarios que acceden de forma limitada
+para ver un sumario de los logs del sistema, y por otro lado el rol desarrollador que tiene un acceso más detallado de los registros de log
+con el obejtivo de diagnosticar posibles errores del sistema.
 
-El cliente mada un request HTTP por medio de una URL, el componente routing se encarga de interpretarlo y enviar a que controlador corresponde para procesarlo, el controlador crear un response y devuelve el response al cliente.
+Implementado la parte de backend con Symfony, una arquitectura hexagonal, DDD, base de datos Mysql en un entorno de desarrollo con docker.
+La parte de frontend esta desarrollada con twig.
 
-# Practice 2
-
-## Pregunta 2.3
-
-El controlador (handler) tipo "fingers_crossed" almacena todos los mensajes durante una solicitud (request) y pasa a un segundo controlador (handler) si el mensaje alcanza un nivel superior o igual al indicado en el "action_level".
-
-# Practice 4
-
-## Pregunta 4.3
-
-Si. Podemos eliminar los dos comandos que hemos creado ya que se etiquetan automáticamente los servicios en base la clase "Command".
-
-## Pregunta 4.4
-
-Si. Podemos eliminar los servicios que declaren inyecciones de dependencias siempre y cuando solo haya una única implementación.
-
-# Practice 6
-
-## Pregunta 6.1 6.2 6.3
-
-Se no olvido taguear, lo pusheamos todo junto.
